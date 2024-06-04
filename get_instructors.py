@@ -1,7 +1,7 @@
 #!!!Note: this service only works for the current academic term; change the program accordingly !!!
 import requests
 import json
-
+import re
 #Set up the query
 query_dict = {"srcdb": "202403", "key" : "crn:???"} #add course CRN (can be extracted with the previous program)
 
