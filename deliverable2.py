@@ -238,6 +238,9 @@ def print_to_csv(instructors,srcdb): #takes in list of instructor dictionary, ou
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         writer.writeheader()
         writer.writerows(instructors)
+    print("\n Program complete:")
+    print("Please check the output in file ", filename)
+    print(" You will need to find email addresses for instructors with'Nothing' in the email column")
 
 
 if (len(sys.argv) != 2):
@@ -247,8 +250,10 @@ if (len(sys.argv) != 2):
 srcdb, courses = get_courses()
 
 courses = get_instructors(srcdb, courses)
-
+print("Fetchning instructors full names")
+print("This may take a few minutes...")
 connection=connect_ldap(sys.argv[1])
+
 
 for course in courses:
     course['email'] = get_email(course['first_name'], course['last_name'], connection)
