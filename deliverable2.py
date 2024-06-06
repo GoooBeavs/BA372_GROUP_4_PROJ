@@ -28,7 +28,7 @@ def get_courses():
     url = "https://classes.oregonstate.edu/api/?page=fose&route=search"
 
 # Source for course codes
-    cob_course_codes = {'BA', 'ACTG', 'BANA', 'BIS', 'DSGN', 'FIN', 'HM', 'MRKT', 'MGMT', 'SCLM'}
+    cob_course_codes = { 'ACTG' ,'BIS', 'FIN'}
 
     # store user input for term and year here 
     year, term = year_term_code()
@@ -72,6 +72,8 @@ def get_courses():
             print(f"No results found for {course_code} in term {srcdb}")
 
         #pull the data or 'results' for each course that is found in API for the term and year
+        print("Getting Course details, and excluding cancelled courses")
+        print('This may take a few minutes')
         for course in response_json.get('results', []):
             # Check if the course is cancelled
             if not course.get('iscancelled'):
